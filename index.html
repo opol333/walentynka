@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walentynka</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: pink;
+            overflow: hidden;
+        }
+        #question {
+            margin-top: 20vh;
+        }
+        h1 {
+            font-size: 2em;
+        }
+        h2 {
+            font-size: 3em;
+            color: red;
+            margin-top: 20px;
+            display: none;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1.5em;
+            background-color: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            transform: rotate(-45deg);
+            animation: float 3s linear infinite;
+        }
+        .heart::before, .heart::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            border-radius: 50%;
+        }
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+        .heart::after {
+            left: 10px;
+            top: 0;
+        }
+        @keyframes float {
+            0% { transform: translateY(0) rotate(-45deg); opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(-45deg); opacity: 0; }
+        }
+        img {
+            width: 300px;
+            height: auto;
+            display: none;
+            margin-top: 20px;
+            border-radius: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div id="question">
+        <h1>Czy zostaniesz moją walentynką? ❤️</h1>
+        <button onclick="showHearts()">Tak</button>
+    </div>
+    <h2 id="loveMessage">KOCHAM CIĘ ❤️</h2>
+    <img id="loveImage" src="/mnt/data/image.png" alt="Walentynka">
+    
+    <script>
+        function showHearts() {
+            document.getElementById('question').style.display = 'none';
+            document.getElementById('loveMessage').style.display = 'block';
+            document.getElementById('loveImage').style.display = 'block';
+            for (let i = 0; i < 30; i++) {
+                let heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 2 + 1) + 's';
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 3000);
+            }
+        }
+    </script>
+</body>
+</html>
